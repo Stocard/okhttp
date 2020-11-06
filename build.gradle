@@ -89,7 +89,7 @@ ext.publishedArtifactId = { project ->
 allprojects {
   group = 'com.squareup.okhttp3'
   project.ext.artifactId = rootProject.ext.publishedArtifactId(project)
-  version = '4.9.0'
+  version = '4.9.1-stocard-SNAPSHOT'
 
   repositories {
     mavenCentral()
@@ -280,20 +280,23 @@ subprojects { project ->
     }
 
     repositories {
+
       maven {
-        name = "mavencentral"
-        url = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+        name = "GitHubPackages"
+        url = uri("https://maven.pkg.github.com/Stocard/okhttp")
+
         credentials {
-          username System.getenv('SONATYPE_NEXUS_USERNAME')
-          password System.getenv('SONATYPE_NEXUS_PASSWORD')
+          username = "${stocardGithubMavenUser}"
+          password = "${stocardGithubMavenPassword}"
         }
       }
     }
   }
 
-  signing {
+  //Publish will fail with signing
+  /*signing {
     sign publishing.publications.maven
-  }
+  }*/
 }
 
 
