@@ -1257,8 +1257,7 @@ class HttpUrl internal constructor(
       } else if (base != null) {
         this.scheme = base.scheme
       } else {
-        throw IllegalArgumentException(
-            "Expected URL scheme 'http' or 'https' but no colon was found")
+        throw IllegalArgumentException("Expected URL scheme 'http' or 'https' but no colon was found for the url input $input")
       }
 
       // Authority.
